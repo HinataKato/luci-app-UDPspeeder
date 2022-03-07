@@ -1,11 +1,11 @@
 local m, s, o
 local sid = arg[1]
 
-m = Map("speederv2", "%s - %s" %{translate("speederv2-tunnel"), translate("Edit Config")})
-m.redirect = luci.dispatcher.build_url("admin/services/speederv2/servers")
+m = Map("udpspeeder", "%s - %s" %{translate("udpspeeder-tunnel"), translate("Edit Config")})
+m.redirect = luci.dispatcher.build_url("admin/services/udpspeeder/servers")
 m.sid = sid
 
-if m.uci:get("speederv2", sid) ~= "servers" then
+if m.uci:get("udpspeeder", sid) ~= "servers" then
 	luci.http.redirect(m.redirect)
 	return
 end

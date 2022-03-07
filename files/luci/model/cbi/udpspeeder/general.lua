@@ -6,16 +6,16 @@ local function has_bin(name)
 	return luci.sys.call("command -v %s >/dev/null" %{name}) == 0
 end
 
-if has_bin("speederv2") then
-    uci:foreach("speederv2", "servers", function(s)
+if has_bin("udpspeeder") then
+    uci:foreach("udpspeeder", "servers", function(s)
         if s.server_port and s.listen_port then
             servers[#servers+1] = {name = s[".name"], alias = s.alias or "%s:%s" %{s.server_port, s.listen_port}}
         end
     end)
 
-    m = Map("speederv2", "%s - %s" %{translate("speederv2-tunnel"), translate("Settings")})
+    m = Map("udpspeeder", "%s - %s" %{translate("udpspeeder-tunnel"), translate("Settings")})
     --Running Status
-    m:append(Template("speederv2/status"))
+    m:append(Template("udpspeeder/status"))
 
     --General Settings
     s = m:section(NamedSection, "general", "general", translate("Running Management"))
@@ -23,7 +23,7 @@ if has_bin("speederv2") then
     s.addremove = false
 
     o = s:option(DynamicList, "server", translate("Server"))
-    o.template = "speederv2/dynamiclist"
+    o.template = "udpspeeder/dynamiclist"
     o:value("nil", translate("Disable"))
     for _, s in ipairs(servers) do o:value(s.name, s.alias) end
     o.default = "nil"
@@ -34,8 +34,8 @@ if has_bin("speederv2") then
     o.default = "root"
     o.rmempty = false
 else
-	return Map("speederv2", "%s - %s" %{translate("speederv2-tunnel"),
-		translate("Settings")}, '<b style="color:red">speederv2-tunnel binary file(/usr/bin/speederv2) not found. </b>')
+	return Map("udpspeeder", "%s - %s" %{translate("udpspeeder-tunnel"),
+		translate("Settings")}, '<b style="color:red">udpspeeder-tunnel binary file(/usr/bin/udpspeeder) not found. </b>')
 end
 
 return m

@@ -1,13 +1,13 @@
 local m, s, o
 
-m = Map("speederv2", "%s - %s" %{translate("speederv2-tunnel"), translate("Configure Management")})
+m = Map("udpspeeder", "%s - %s" %{translate("udpspeeder-tunnel"), translate("Configure Management")})
 
 s = m:section(TypedSection, "servers")
 s.anonymous = true
 s.addremove = true
 s.sortable = true
 s.template = "cbi/tblsection"
-s.extedit = luci.dispatcher.build_url("admin/services/speederv2/servers/%s")
+s.extedit = luci.dispatcher.build_url("admin/services/udpspeeder/servers/%s")
 function s.create(...)
 	local sid = TypedSection.create(...)
 	if sid then
@@ -23,15 +23,15 @@ end
 
 o = s:option(DummyValue, "_server", translate("Server"))
 function o.cfgvalue(self, section)
-	local server_ip = m.uci:get("speederv2", section, "server_ip") or "127.0.0.1"
-	local server_port = m.uci:get("speederv2", section, "server_port")
+	local server_ip = m.uci:get("udpspeeder", section, "server_ip") or "127.0.0.1"
+	local server_port = m.uci:get("udpspeeder", section, "server_port")
 	return "%s:%s" %{server_ip, server_port}
 end
 
 o = s:option(DummyValue, "_local_listening", translate("Local Listening"))
 function o.cfgvalue(self, section)
-	local listen_ip = m.uci:get("speederv2", section, "listen_ip") or "0.0.0.0"
-	local listen_port = m.uci:get("speederv2", section, "listen_port")
+	local listen_ip = m.uci:get("udpspeeder", section, "listen_ip") or "0.0.0.0"
+	local listen_port = m.uci:get("udpspeeder", section, "listen_port")
 	return "%s:%s" %{listen_ip, listen_port}
 end
 

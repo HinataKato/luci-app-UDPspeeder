@@ -1,8 +1,8 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\n"
 
-msgid "speederv2-tunnel"
-msgstr "speederv2 隧道"
+msgid "udpspeeder-tunnel"
+msgstr "udpspeeder 隧道"
 
 msgid "Settings"
 msgstr "设置"
