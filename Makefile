@@ -23,7 +23,7 @@ define Package/$(PKG_NAME)
 	SUBMENU:=3. Applications
 	TITLE:=LuCI Support for udpspeeder-tunnel
 	PKGARCH:=all
-#	DEPENDS:=+udpspeeder-tunnel
+	DEPENDS:=+udpspeeder
 endef
 
 define Package/$(PKG_NAME)/description
