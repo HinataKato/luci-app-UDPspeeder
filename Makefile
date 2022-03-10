@@ -23,7 +23,7 @@ define Package/$(PKG_NAME)
 	SUBMENU:=3. Applications
 	TITLE:=LuCI Support for udpspeeder-tunnel
 	PKGARCH:=all
-	DEPENDS:=+udpspeeder
+	#DEPENDS:=+udpspeeder
 endef
 
 define Package/$(PKG_NAME)/description
@@ -44,7 +44,7 @@ endef
 define Package/$(PKG_NAME)/postinst
 #!/bin/sh
 if [ -z "$${IPKG_INSTROOT}" ]; then
-	( . /etc/uci-defaults/luci-udpspeeder ) && rm -f /etc/uci-defaults/luci-speederv2
+	( . /etc/uci-defaults/luci-udpspeeder ) && rm -f /etc/uci-defaults/luci-udpspeeder
 fi
 exit 0
 endef
@@ -59,15 +59,15 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/controller
 	$(INSTALL_DATA) ./files/luci/controller/*.lua $(1)/usr/lib/lua/luci/controller/
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/model/cbi/udpspeeder
-	$(INSTALL_DATA) ./files/luci/model/cbi/udpspeeder/*.lua $(1)/usr/lib/lua/luci/model/cbi/speederv2/
+	$(INSTALL_DATA) ./files/luci/model/cbi/udpspeeder/*.lua $(1)/usr/lib/lua/luci/model/cbi/udpspeeder/
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/view/udpspeeder
-	$(INSTALL_DATA) ./files/luci/view/udpspeeder/*.htm $(1)/usr/lib/lua/luci/view/speederv2/
+	$(INSTALL_DATA) ./files/luci/view/udpspeeder/*.htm $(1)/usr/lib/lua/luci/view/udpspeeder/
 	$(INSTALL_DIR) $(1)/etc/config
-	$(INSTALL_CONF) ./files/root/etc/config/udpspeeder $(1)/etc/config/speederv2
+	$(INSTALL_CONF) ./files/root/etc/config/udpspeeder $(1)/etc/config/udpspeeder
 	$(INSTALL_DIR) $(1)/etc/init.d
-	$(INSTALL_BIN) ./files/root/etc/init.d/udpspeeder $(1)/etc/init.d/speederv2
+	$(INSTALL_BIN) ./files/root/etc/init.d/udpspeeder $(1)/etc/init.d/udpspeeder
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
-	$(INSTALL_BIN) ./files/root/etc/uci-defaults/luci-udpspeeder $(1)/etc/uci-defaults/luci-speederv2
+	$(INSTALL_BIN) ./files/root/etc/uci-defaults/luci-udpspeeder $(1)/etc/uci-defaults/luci-udpspeeder
 endef
 
 $(eval $(call BuildPackage,$(PKG_NAME)))
