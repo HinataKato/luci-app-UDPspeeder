@@ -62,10 +62,10 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_DATA) ./files/luci/model/cbi/udpspeeder/*.lua $(1)/usr/lib/lua/luci/model/cbi/udpspeeder/
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/view/udpspeeder
 	$(INSTALL_DATA) ./files/luci/view/udpspeeder/*.htm $(1)/usr/lib/lua/luci/view/udpspeeder/
-	$(INSTALL_DIR) $(1)/etc/config
-	$(INSTALL_CONF) ./files/root/etc/config/udpspeeder $(1)/etc/config/udpspeeder
-	$(INSTALL_DIR) $(1)/etc/init.d
-	$(INSTALL_BIN) ./files/root/etc/init.d/udpspeeder $(1)/etc/init.d/udpspeeder
+	#$(INSTALL_DIR) $(1)/etc/config
+	#$(INSTALL_CONF) ./files/root/etc/config/udpspeeder $(1)/etc/config/udpspeeder
+	#$(INSTALL_DIR) $(1)/etc/init.d
+	#$(INSTALL_BIN) ./files/root/etc/init.d/udpspeeder $(1)/etc/init.d/udpspeeder
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_BIN) ./files/root/etc/uci-defaults/luci-udpspeeder $(1)/etc/uci-defaults/luci-udpspeeder
 endef
